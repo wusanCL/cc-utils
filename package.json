@@ -1,9 +1,14 @@
 {
   "name": "clis-utils",
-  "version": "0.1.25",
+  "version": "0.2.1",
   "private": false,
   "license": "MIT",
   "author": "chenyekun",
+  "description": "包含了表单验证、类型检测、防抖节流，以及vue的自动化路由等函数的工具包。",
+  "homepage": "https://github.com/wusanCL/cc-utils",
+  "bugs": {
+    "email": "wusan_web@163.com"
+  },
   "scripts": {
     "build": "webpack-cli --config ./build/config.js"
   },
@@ -21,7 +26,8 @@
     "@babel/preset-env": "^7.12.7",
     "babel-loader": "^8.2.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "husky": "^4.3.0"
+    "husky": "^4.3.0",
+    "webpack": "^5.9.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",

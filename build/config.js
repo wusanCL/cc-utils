@@ -8,16 +8,11 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "../lib"),
         filename: "[name].js",
-        libraryTarget: "commonjs2",
-        libraryExport:'default'
+        libraryTarget: "umd",
+        library: 'clis-utils'
     },
     resolve: {
         extensions: [".js", ".json"],
-    },
-    optimization: {
-        splitChunks: {
-            chunks: "all",
-        },
     },
     module: {
         rules: [

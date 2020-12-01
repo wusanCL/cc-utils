@@ -6,7 +6,7 @@ const initRoutes = {
     redirect: "/home",
 }
 
-class AutomatedRoutes {
+class AutomatedRouter {
     constructor(options) {
         let { routes,final,requireModules } = options || {}
         this.routes = routes || [initRoutes]
@@ -14,14 +14,12 @@ class AutomatedRoutes {
         // 路由最终生成后调用
         this.final = final || (()=>{})
 
-        // require函数不能静态提取依赖项    同时也没有浏览器实现了module的createRequire 不然还可以根据用户的路径生成require 对modules的加载路径进行配置  或许要换一个底层依赖  同时耦合性也有点高   可以使用依赖倒置进行优化  待升级
-        // /\.\/(([^/]*?)\/)+index\.vue$/
-        this.requireModules =  requireModules
+        // require函数不能静态提取依赖项    同时没有浏览器实现module的createRequire  后续需要换一个底层依赖  耦合性也有点高   可以使用依赖倒置进行优化 
+        this.requireModules = requireModules
     }
 
     create() {
         let ast = this.resolveModules()
-        console.log(ast)
         this.generatorRoutes(ast, this.routes)
         this.final(this.routes)
     }
@@ -54,7 +52,7 @@ class AutomatedRoutes {
                     this.generatorRoutes(module.children, parent)
                 }
             } catch(err){
-                
+                console.error(err)
             }
 
         })
@@ -91,4 +89,4 @@ class AutomatedRoutes {
     }
 }
 
-export default  AutomatedRoutes
+export default AutomatedRouter

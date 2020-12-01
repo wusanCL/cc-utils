@@ -31,6 +31,33 @@ export function isPositiveInteger (data){
     return isInteger(data) && data > 0
 }
 
+
+export function checkForm(data,initData = null,openDefaultValisdate = fase){
+    if(!data && !isObject(data)){
+        console.error('请传入一个对象')
+        return false
+    } 
+    let isInit
+    for(let key in data){
+        let val = data[key]
+        isInit = initData ? Object.prototype.hasOwnProperty.call(initData,key) : true
+        if(isInit && (val === '' || val == null)){
+            return {status:false,errTxt:'请完整输入表单'}
+        }
+        if(openDefaultValisdate && checkForm.defaultValidate[key]){
+            return defaultValidate[key](val)
+        }
+    }
+
+    return {status:true}
+}
+
+
+// 默认的表单字段验证函数 
+checkForm.defaultValidate = {
+    phone:(val) => {}
+}
+
 export default {
     isFunction,
     isArray,
@@ -38,5 +65,6 @@ export default {
     isNumber,
     isInteger,
     isPositiveInteger,
-    getType
+    getType,
+    checkForm
 }
