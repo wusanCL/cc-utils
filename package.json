@@ -1,24 +1,32 @@
 {
-  "name": "cc-utils",
-  "version": "0.1.0",
+  "name": "clis-utils",
+  "version": "0.1.25",
   "private": false,
   "license": "MIT",
   "author": "chenyekun",
   "scripts": {
-
+    "build": "webpack-cli --config ./build/config.js"
   },
+  "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib/**/*.js"
   ],
-  "main": "dist/lib/index.js",
   "keywords": [
     "utils",
     "js"
   ],
   "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "husky": "^4.3.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "core-js": "^3.8.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": ""

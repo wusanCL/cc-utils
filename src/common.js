@@ -4,7 +4,7 @@ const vaildate = require("./validate")
 const { getType, isBoolean, isObject, isArray } = vaildate
 
 // 拷贝   最少传入一个需要拷贝的源数据参数
-exports.clone = function (target, source, deep = false) {
+export function clone (target, source, deep = false) {
     let paramsLength = arguments.length
     if (paramsLength < 3) {
         source = target
@@ -38,7 +38,7 @@ exports.clone = function (target, source, deep = false) {
 }
 
 // 对象扩展合并
-exports.extend = function (...args) {
+export function extend (...args) {
     let target = args[0] || {},
         i = 1,
         length = args.length
@@ -62,7 +62,7 @@ exports.extend = function (...args) {
                     } else {
                         clone = src && isObject(src) ? src : {}
                     }
-                    target[key] = exports.extend(deep, clone, value)
+                    target[key] = extend(deep, clone, value)
                 } else {
                     target[key] = value
                 }
@@ -74,7 +74,7 @@ exports.extend = function (...args) {
 }
 
 // 防抖
-exports.debounce = function (func, wait, immediate) {
+export function debounce (func, wait, immediate) {
     let timeout, args
     let later = function () {
         timeout = null
@@ -91,7 +91,7 @@ exports.debounce = function (func, wait, immediate) {
 }
 
 // 节流
-exports.throttle = function (func, wait = 1000, options) {
+export function throttle (func, wait = 1000, options) {
     //leading   是否初次调用  默认开启，   traniling  是否最后一次调用  默认开启
     let lasttime = 0,
         timeout,
@@ -120,4 +120,11 @@ exports.throttle = function (func, wait = 1000, options) {
             timeout = setTimeout(later(this), remaining)
         }
     }
+}
+
+export default {
+    clone,
+    throttle,
+    debounce,
+    extend
 }
